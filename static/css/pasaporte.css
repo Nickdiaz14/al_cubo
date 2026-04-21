@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+    --passport-bg: #e8e4d9;
+    --passport-border: #8b7d6b;
+    --stamp-success: #2d7a2d;
+    --stamp-error: #a82e2e;
+    --stamp-warning: #c28b1e;
+    --stamp-inactive: #2e4a8a;
+}
+
+body, html, .passport-card { 
+    display: block;
+    font-family: 'Inter', sans-serif; 
+    text-align: center; 
+    margin: 0; 
+    background: #1a1a1a; 
+    color: white;
+    height: 100vh;
+    width: 100vw;
+}
+
+/* PASSPORT PAGE CONTAINER */
+.passport-card {
+    background: var(--passport-bg);
+    color: #2c2c2c;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 15px;
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        radial-gradient(circle at 50% 50%, rgba(139, 125, 107, 0.05) 1px, transparent 1px),
+        linear-gradient(rgba(139, 125, 107, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(139, 125, 107, 0.03) 1px, transparent 1px);
+    border: 8px double var(--passport-border);
+    animation: slideIn 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slideIn {
+    from { transform: translateY(100vh) rotateX(30deg); opacity: 0; }
+    to { transform: translateY(0) rotateX(10deg); opacity: 1; }
+}
+
+.passport-header {
+    border-bottom: 2px solid var(--passport-border);
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.passport-header h4 {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+}
+
+.passport-header h3 {
+    margin: 5px 0 0 0;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.passport-body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.passport-personal-info-area {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+}
+
+.passport-photo-area {
+    width: 120px;
+    height: 150px;
+    border: 2px dashed #aaa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.passport-photo-area i {
+    font-size: 4rem;
+    color: #ccc;
+}
+
+.passport-info-area {
+    text-align: left;
+    font-family: 'Courier Prime', monospace;
+}
+
+.info-field {
+    margin-bottom: 15px;
+}
+
+.info-label {
+    font-size: 0.65rem;
+    color: #888;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+}
+
+.info-value {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    word-break: break-word;
+}
+
+.passport-footer {
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    margin-top: 20px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 0.85rem;
+    text-align: left;
+    letter-spacing: 1px;
+    color: #555;
+}
+
+/* STAMPS */
+.passport-stamps-area {
+    position: relative; /* Referencia para los sellos */
+    height: 90%;
+    width: 100%;
+    overflow: hidden; /* Evita que el sello se vea fuera mientras cae */
+}
+
+.passport-stamps-area img {
+    display: none; /* O puedes usar visibility: hidden */
+    position: absolute; /* ¡Vital! Para que no ocupe espacio físico */
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%, -50%) scale(3); /* Centrado inicial */
+    pointer-events: none;
+    z-index: 10;
+}
+
+.passport-stamps-area img.active {
+    display: block;
+    opacity: 1;
+    opacity: 0.8;
+    filter: blur(25px);
+    animation: slamStamp 0.3s ease-out forwards;
+}
+
+@keyframes slamStamp {
+    0% {
+        transform: scale(3) rotate(30deg);
+        filter: blur(25px);
+        opacity: 0;
+    }
+    20% {
+        transform: scale(1.5) rotate(10deg);
+        filter: blur(10px);
+        opacity: 0.5;
+    }
+    70% {
+        transform: scale(1) rotate(-10deg); /* Impacto */
+        filter: blur(5px);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1) rotate(0deg); /* Posición final */
+        filter: blur(0px);
+        opacity: 0.8;
+    }
+}

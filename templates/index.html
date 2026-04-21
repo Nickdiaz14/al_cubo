@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lector QR Acceso</title>
+    
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+</head>
+<body>
+
+    <button id="btn-recargar" onclick="recargarBaseDatos()">🔄 Sincronizar</button>
+
+    <h3 style="padding: 10px; margin-top: 40px;">Escanea el QR de ingreso</h3>
+    <div id="reader"></div>
+
+    <div id="resultado-overlay">
+        <i id="icono"></i>
+        
+        <h1 id="titulo-res">RESULTADO</h1>
+        <h2 id="nombre-res"></h2>
+        <p id="doc-res"></p>
+        <p id="extra-info" style="font-size: 1rem; opacity: 0.9; margin-top: 10px;"></p>
+        <button class="btn" onclick="reiniciarEscaneo()">LEER SIGUIENTE</button>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/index.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Pasaporte Al Cubo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background-color: #f4f6f9; }
+        .login-box { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px; text-align: center; }
+        .login-box h2 { color: #333; margin-bottom: 20px; }
+        .input-group { margin-bottom: 20px; text-align: left; }
+        .input-group label { display: block; margin-bottom: 8px; color: #555; font-weight: 500; }
+        .input-group input { width: 100%; padding: 12px; border: 1px solid #ccc; border-radius: 6px; box-sizing: border-box; font-size: 16px; }
+        .btn-submit { background-color: #4a6ee0; color: white; border: none; padding: 12px 20px; border-radius: 6px; font-size: 16px; cursor: pointer; width: 100%; transition: 0.3s; }
+        .btn-submit:hover { background-color: #3552b5; }
+    </style>
+</head>
+<body>
+    <div class="login-box">
+        <img src="https://math-and-beer.onrender.com/static/math_beer.png" alt="Logo" style="max-width: 100px; display:none;" id="logo-fallback" onerror="this.style.display='none'">
+        <h2>Obtén tu Pasaporte</h2>
+        <p style="color: #666; margin-bottom: 30px; font-size: 0.95rem;">Ingresa el correo electrónico que utilizaste en el registro de asistentes.</p>
+        
+        <form action="/registro_pasaporte" method="POST">
+            <div class="input-group">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" name="email" placeholder="tu@correo.com" required>
+            </div>
+            {% if error %}
+            <p style="color: red; font-size: 0.85rem; margin-top: -10px; margin-bottom: 10px;">{{ error }}</p>
+            {% endif %}
+            <button type="submit" class="btn-submit">Crear / Ver Mi Pasaporte</button>
+        </form>
+    </div>
+</body>
+</html>
