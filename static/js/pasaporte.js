@@ -126,8 +126,6 @@ function onScanSuccess(decodedText, decodedResult) {
         html5QrCode.pause();
     }
     
-    alert(`Leyendo sello: ${decodedText}`);
-    
     fetch('/registrar_sello', {
         method: 'POST',
         headers: {'Content-Type': 'application/json'},
