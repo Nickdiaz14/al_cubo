@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.passport-stamps-area');
     const posicionesUsadas = []; 
     
-    const RADIO_COLISION = 100;
+    const RADIO_COLISION = 110;
     // Clave única de almacenamiento por pasaporte
     const STORAGE_KEY = `pasaporte_pos_${PASSPORT_CODE}`;
     
@@ -50,8 +50,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 let x, y, rotate;
                 let colision;
                 let intentos = 0;
-                const selloWidth = sello.clientWidth || 150; 
-                const selloHeight = sello.clientHeight || 150;
+                const selloWidth = sello.clientWidth || 200; 
+                const selloHeight = sello.clientHeight || 200;
 
                 do {
                     colision = false;
@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         }
                     }
                     intentos++;
-                } while (colision && intentos < 100);
+                } while (colision && intentos < 200);
 
                 const signo = Math.random() > 0.5 ? "" : "-";
                 rotate = `${signo}${(Math.random() * 190)}deg`;
