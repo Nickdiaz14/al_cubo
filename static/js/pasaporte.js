@@ -162,7 +162,7 @@ function resetearPasaporte() {
     .then(response => response.json())
     .then(data => {
         if (data.status === 'success') {
-            localStorage.removeItem(STORAGE_KEY);
+            localStorage.clear();
             window.location.reload();
         } else {
             alert(data.message || "Error al resetear el pasaporte");
