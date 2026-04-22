@@ -151,3 +151,24 @@ function onScanSuccess(decodedText, decodedResult) {
         html5QrCode.resume();
     });
 }
+
+function resetearPasaporte() {
+    if (!confirm("¿Estás seguro de que deseas resetear el pasaporte?")) {
+        return;
+    }
+    fetch(`/pasaporte/${PASSPORT_CODE}/reset`, {
+        method: 'POST'
+    })
+    .then(response => {
+        if (response.ok) {
+            localStorage.removeItem(STORAGE_KEY);
+            window.location.reload();
+        } else {
+            alert("Error al resetear el pasaporte");
+        }
+    })
+    .catch(err => {
+        console.error(err);
+        alert("Error de conexión");
+    });
+}

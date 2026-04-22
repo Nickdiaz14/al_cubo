@@ -185,6 +185,26 @@ def registrar_sello():
     finally:
         if conn: conn.close()
 
+@app.route('/pasaporte/<passport_code>/reset', methods=['POST'])
+def resetear_pasaporte_api(passport_code):
+    conn = get_db_connection()
+    if not conn: return jsonify({"status": "error", "message": "Error BD"}), 500
+    try:
+        cursor = conn.cursor()
+        # Reseteamos todos los sellos a False
+        cursor.execute("""
+            UPDATE sellos_pasaporte_al_cubo 
+            SET sello_1 = FALSE, sello_2 = FALSE, sello_3 = FALSE, 
+                sello_4 = FALSE, sello_5 = FALSE, sello_6 = FALSE 
+            WHERE passport_code = %s
+        """, (passport_code,))
+        conn.commit()
+        return jsonify({"status": "success"})
+    except Exception as e:
+        return jsonify({"status": "error", "message": str(e)}), 500
+    finally:
+        if conn: conn.close()
+
 # --- NUEVA RUTA PARA EL BOTÓN DE RECARGAR ---
 @app.route('/recargar_db', methods=['POST'])
 def recargar_db():
