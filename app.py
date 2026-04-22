@@ -185,7 +185,7 @@ def registrar_sello():
     finally:
         if conn: conn.close()
 
-@app.route('/pasaporte/<passport_code>/reset', methods=['POST'])
+@app.route('/pasaporte/reset/<passport_code>', methods=['POST'])
 def resetear_pasaporte_api(passport_code):
     conn = get_db_connection()
     if not conn: return jsonify({"status": "error", "message": "Error BD"}), 500

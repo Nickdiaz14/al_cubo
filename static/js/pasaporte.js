@@ -156,19 +156,20 @@ function resetearPasaporte() {
     if (!confirm("¿Estás seguro de que deseas resetear el pasaporte?")) {
         return;
     }
-    fetch(`/pasaporte/${PASSPORT_CODE}/reset`, {
+    fetch(`/pasaporte/reset/${PASSPORT_CODE}`, {
         method: 'POST'
     })
-    .then(response => {
-        if (response.ok) {
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'success') {
             localStorage.removeItem(STORAGE_KEY);
             window.location.reload();
         } else {
-            alert("Error al resetear el pasaporte");
+            alert(data.message || "Error al resetear el pasaporte");
         }
     })
     .catch(err => {
         console.error(err);
-        alert("Error de conexión");
+        alert(err || "Error de conexión");
     });
 }
